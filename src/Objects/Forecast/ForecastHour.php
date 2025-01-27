@@ -132,6 +132,14 @@ final readonly class ForecastHour implements WeatherObjectInterface, WeatherComm
     }
 
     /**
+     * @return null|float
+     */
+    public function getSnowThicknessInCm(): ?float
+    {
+        return $this->forecastHour->snow_cm ?? null;
+    }
+
+    /**
      * @return int|null
      */
     public function getHumidity(): ?int
@@ -236,7 +244,7 @@ final readonly class ForecastHour implements WeatherObjectInterface, WeatherComm
     /**
      * 1 = Yes (showing day condition icon)
      * 0 = No (showing night condition icon)
-     * 
+     *
      * @return int|null
      */
     public function getDayNightConditionIcon(): ?int
@@ -261,17 +269,19 @@ final readonly class ForecastHour implements WeatherObjectInterface, WeatherComm
     }
 
     /**
+     * The probability of rain in percents (0-100)
      * @return int|null
      */
-    public function getRainChance(): ?int
+    public function getChanceOfRain(): ?int
     {
         return $this->forecastHour->chance_of_rain ?? null;
     }
 
     /**
+     * Th probability of snowfall in percents (0-100)
      * @return int|null
      */
-    public function getSnowChance(): ?int
+    public function getChanceOfSnowfall(): ?int
     {
         return $this->forecastHour->chance_of_snow ?? null;
     }

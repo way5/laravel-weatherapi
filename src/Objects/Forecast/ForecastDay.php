@@ -127,6 +127,46 @@ final readonly class ForecastDay implements WeatherObjectInterface
     }
 
     /**
+     * 1 = Yes (it will be rainy)
+     * 0 = No (it won`t be rainy)
+     *
+     * @return null|int
+     */
+    public function shallItRain(): ?int
+    {
+        return $this->forecastDay->daily_will_it_rain ?? null;
+    }
+
+    /**
+     * Th probability of rain in percents (0-100)
+     * @return null|int
+     */
+    public function getChanceOfRain(): ?int
+    {
+        return $this->forecastDay->daily_chance_of_rain ?? null;
+    }
+
+    /**
+     * 1 = Yes (it will be snowing)
+     * 0 = No (it won`t be snowing)
+     *
+     * @return null|int
+     */
+    public function shallItSnow(): ?int
+    {
+        return $this->forecastDay->daily_will_it_snow ?? null;
+    }
+
+    /**
+     * The probability of snowfall in percents (0-100)
+     * @return null|int
+     */
+    public function getChanceOfSnowfall(): ?int
+    {
+        return $this->forecastDay->daily_chance_of_snow ?? null;
+    }
+
+    /**
      * @return Condition|null
      */
     public function getWeatherCondition(): ?Condition

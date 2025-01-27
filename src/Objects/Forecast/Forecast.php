@@ -18,6 +18,22 @@ final readonly class Forecast implements WeatherObjectInterface, WeatherForecast
     ) {}
 
     /**
+     * @return null|string
+     */
+    public function getDateOfDay(): ?string
+    {
+        return $this->forecastItem->date ?? null;
+    }
+
+    /**
+     * @return null|int
+     */
+    public function getEpochOfDay(): ?int
+    {
+        return $this->forecastItem->date_epoch ?? null;
+    }
+
+    /**
      * @return ForecastCommon|null
      */
     public function common(): ?ForecastCommon

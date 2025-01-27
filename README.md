@@ -58,7 +58,9 @@ use GrigoryGerasimov\Weather\Facades\Weather;
 $data = Weather::api('forecast')->city('Prague')->forecastDays(3)->requireAQI(true)->requireAlerts(true)->requireTides(true)->lang('cs')->get();
 
 foreach($data->forecast() as $day) {
-    // by day
+    // by day, ex.:
+    $day->astro()->getCommonAstronomyParams()->...
+    
     foreach($day->hour() as $hour) {
         // by hour
     }

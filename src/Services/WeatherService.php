@@ -14,6 +14,7 @@ use GrigoryGerasimov\Weather\Exceptions\{
 };
 use GrigoryGerasimov\Weather\Models\Weather as WeatherModel;
 use GrigoryGerasimov\Weather\Contracts\WeatherServiceInterface;
+use Illuminate\Support\Facades\Log;
 
 class WeatherService implements WeatherServiceInterface
 {
@@ -33,17 +34,16 @@ class WeatherService implements WeatherServiceInterface
     ];
 
     private const API_LANG_NAMES = [
-        'ar', 'bn', 'bg',
-        'zh','zh_tw','cs','da',
-        'nl','fi','fr','de',
-        'el','hi','hu','it',
+        'ar', 'bn', 'bg','cs',
+        'da','nl','fi','fr','de',
+        'el','en','hi','hu','it',
         'ja','jv','ko','zh_cmn',
         'mr','pl','pt','pa',
         'ro','ru','sr','si',
         'sk','es','sv','ta',
         'te','tr','uk','ur',
-        'vi','zh_wuu','zh_hsn','zh_yue',
-        'zu',
+        'vi', 'zh','zh_tw','zh_wuu',
+        'zh_hsn','zh_yue','zu',
     ];
 
     /**
@@ -539,12 +539,7 @@ class WeatherService implements WeatherServiceInterface
     public function lang(string $langCode): self
     {
         if(!in_array($langCode, self::API_LANG_NAMES, true)) {
-            $this->handleThrowable(
-                new InvalidArgumentValueException(
-                    "language code [".$langCode."] doesn't exist, use: "
-                        . implode(', ', self::API_LANG_NAMES)
-                )
-            );
+            Log::warning("language code [".$langCode."] doesn't exist, use: " . implode(', ', self::API_LANG_NAMES));
         }
 
         try {

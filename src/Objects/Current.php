@@ -229,7 +229,7 @@ final readonly class Current implements WeatherObjectInterface, WeatherCommonInt
     /**
      * @return null|float
      */
-    public function getDewpointInCelsius(): ?float
+    public function getDewPointInCelsius(): ?float
     {
         return $this->current->dewpoint_c ?? null;
     }
@@ -237,7 +237,7 @@ final readonly class Current implements WeatherObjectInterface, WeatherCommonInt
     /**
      * @return null|float
      */
-    public function getDewpointInFahrenheit(): ?float
+    public function getDewPointInFahrenheit(): ?float
     {
         return $this->current->dewpoint_f ?? null;
     }
