@@ -1,5 +1,8 @@
 # Laravel-Weather Package
-Laravel package for weather and geo info based on WeatherAPI (JSON RestAPI only)
+Laravel package for weather and geo info based on WeatherAPI
+
+> [!IMPORTANT] 
+> Laravel-Weather supports `JSON RestAPI only`.
 
 ## Installation
 The package can be installed via Composer:
@@ -13,33 +16,14 @@ For publishing the package config please run the following command. There are al
 `php artisan vendor:publish --tag=laravel-weather`
 
 ## Start
+
 Once the package is installed and the config is published, you are free to use the package in your Laravel projects.
 
-All you need to do is to use the Weather facade (GrigoryGerasimov\Weather\Facades\Weather) and build custom fluent interfaces, e.g.:
-
-`Weather::api('forecast')->city('Prague')->forecastDays(3)->requireAQI(true)->requireAlerts(true)->requireTides(true)->lang('cs')->get();`
-
-The *api()* method is mandatory, as it configures the relevant api method and api key.
-
-By default the WeatherAPI Free plan key is used, however you can always adjust it in the [laravel-weather config](https://github.com/GrigoryGerasimov/laravel-weather/blob/main/config/weather.php), if you have your own WeatherAPI key.
-
-As for the api methods, the following ones are available.
-```
-current
-forecast
-search
-history
-marine
-future
-timezone
-sports
-astronomy
-ip
-```
-By default, the *current* method is used. Please note that the default WeatherAPI Free plan key is limited for the *history* method.
+### Weather API
 
 The available Weather facade methods are:
-```
+
+```php
 api(string $type = 'current')
 coords(float|string $lat, float|string $lon)
 city(string $city)
@@ -64,6 +48,59 @@ uri()
 ```
 
 The facade method *get()* will provide you with the result of your request, however you can also access the request uri directly via the *uri()* method.
+
+In the following example we request weather data in `Prague` for the next `3 days`, including weather alerts, air quality data and available tide data.
+
+```php
+
+use GrigoryGerasimov\Weather\Facades\Weather;
+
+$data = Weather::api('forecast')->city('Prague')->forecastDays(3)->requireAQI(true)->requireAlerts(true)->requireTides(true)->lang('cs')->get();
+
+foreach($data->forecast() as $day) {
+    // by day
+    foreach($day->hour() as $hour) {
+        // by hour
+    }
+}
+
+```
+
+- The `api()` method is mandatory, as it configures the relevant api method and api key.
+- The `city()` method takes `US Zipcode`, `UK Postcode`, `Canada Postalcode`, `IP address`, `Latitude/Longitude` (decimal degree) or `Region, City, Country` string. 
+- The `lang()` method accepts two letter country code (`ISO-639`), ex.: `ar`,`ca`,`pt`,`ru`,`us`,`zh`, etc...
+
+> [!NOTE] 
+> See [request parameters](https://www.weatherapi.com/docs/#intro-request) section to learn more.
+
+By default the WeatherAPI Free plan key is used, however you can always adjust it in the [laravel-weather config](https://github.com/GrigoryGerasimov/laravel-weather/blob/main/config/weather.php), if you have your own WeatherAPI key.
+
+As for the api methods, the following ones are available.
+```php
+current()    // Current weather or realtime weather API method allows a user to get up to date current weather information in json and xml. The data is returned as a Current Object.
+forecast()   // Forecast weather API method returns, depending upon your price plan level, upto next 14 day weather forecast and weather alert as json or xml. The data is returned as a Forecast Object.
+history()    // History weather API method returns historical weather for a date on or after 1st Jan, 2010 as json. The data is returned as a Forecast Object.
+marine()    // Marine weather API method returns upto next 7 day (depending upon your price plan level) marine and sailing weather forecast and tide data (depending upon your price plan level) as json or xml. The data is returned as a Marine Object.
+future()    // Future weather API method returns weather in a 3 hourly interval in future for a date between 14 days and 365 days from today in the future.
+timezone()  // Return Location Object
+astronomy() // Return Location and Astronomy Object
+ip()        // IP Lookup API method allows a user to get up to date information for an IP address.
+search()    // WeatherAPI.com Search or Autocomplete API returns matching cities and towns as an array of Location object.
+```
+
+By default, the *current* method is used. Please note that the default WeatherAPI Free plan key is limited for the *history* method.
+
+### Sports API
+
+```php
+
+use GrigoryGerasimov\Weather\Facades\Weather;
+
+$data = Weather::api('sports')->city('London')->autoIp()->requireAQI(true)->requireTides(true)->get();
+
+$data->sports()    // {"football":[],"cricket":[],"golf":[]}
+
+```
 
 For demonstration purpose, the package also includes a number of components and views to the basic Weather api methods. These views are some very simple data lists without any particular styling, they serve merely for the visual representation of the weather and geo info retrieved with the help of this package. You can check them out under the following [web-routes](https://github.com/GrigoryGerasimov/laravel-weather/blob/main/routes/web.php)
 

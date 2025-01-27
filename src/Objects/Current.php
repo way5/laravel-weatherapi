@@ -193,4 +193,68 @@ final readonly class Current implements WeatherObjectInterface, WeatherCommonInt
     {
         return $this->current->gust_kph ?? null;
     }
+
+    /**
+     * @return null|float
+     */
+    public function getWindChillInCelsius(): ?float
+    {
+        return $this->current->windchill_c ?? null;
+    }
+
+    /**
+     * @return null|float
+     */
+    public function getWindChillInFahrenheit(): ?float
+    {
+        return $this->current->windchill_f ?? null;
+    }
+
+    /**
+     * @return null|float
+     */
+    public function getHeatindexInCelsius(): ?float
+    {
+        return $this->current->heatindex_c ?? null;
+    }
+
+    /**
+     * @return null|float
+     */
+    public function getHeatindexInFahrenheit(): ?float
+    {
+        return $this->current->heatindex_f ?? null;
+    }
+
+    /**
+     * @return null|float
+     */
+    public function getDewpointInCelsius(): ?float
+    {
+        return $this->current->dewpoint_c ?? null;
+    }
+
+    /**
+     * @return null|float
+     */
+    public function getDewpointInFahrenheit(): ?float
+    {
+        return $this->current->dewpoint_f ?? null;
+    }
+
+    /**
+     * @return null|float
+     */
+    public function getVisibilityInKm(): ?int
+    {
+        return $this->current->vis_km ?? null;
+    }
+
+    /**
+     * @return null|float
+     */
+    public function getVisibilityInMiles(): ?int
+    {
+        return $this->current->vis_miles ?? null;
+    }
 }

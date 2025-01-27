@@ -32,6 +32,20 @@ class WeatherService implements WeatherServiceInterface
         'ip'
     ];
 
+    private const API_LANG_NAMES = [
+        'ar', 'bn', 'bg',
+        'zh','zh_tw','cs','da',
+        'nl','fi','fr','de',
+        'el','hi','hu','it',
+        'ja','jv','ko','zh_cmn',
+        'mr','pl','pt','pa',
+        'ro','ru','sr','si',
+        'sk','es','sv','ta',
+        'te','tr','uk','ur',
+        'vi','zh_wuu','zh_hsn','zh_yue',
+        'zu',
+    ];
+
     /**
      * @var string
      */
@@ -107,7 +121,7 @@ class WeatherService implements WeatherServiceInterface
     {
         try {
             if ($this->queryStructureValidated()) {
-                $this->requestUri = $this->requestUri . "&q=$city";
+                $this->requestUri = $this->requestUri . "&q=". urlencode($city);
             }
         } catch (MissingApiFieldException $e) {
             $this->handleWeatherException($e);
@@ -524,6 +538,15 @@ class WeatherService implements WeatherServiceInterface
      */
     public function lang(string $langCode): self
     {
+        if(!in_array($langCode, self::API_LANG_NAMES, true)) {
+            $this->handleThrowable(
+                new InvalidArgumentValueException(
+                    "language code [".$langCode."] doesn't exist, use: "
+                        . implode(', ', self::API_LANG_NAMES)
+                )
+            );
+        }
+
         try {
             if ($this->queryStructureValidated())  {
                 $this->requestUri = $this->requestUri . "&lang=$langCode";
@@ -587,7 +610,7 @@ class WeatherService implements WeatherServiceInterface
 
     private function isInvalidJsonResponse(bool|string $response): bool
     {
-        return $response === '' || preg_match('/(<.+>)|(<\/.+>)/', $response);
+        return !$response || $response === '' || preg_match('/(<.+>)|(<\/.+>)/', $response);
     }
 
     /**
