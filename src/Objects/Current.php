@@ -245,7 +245,7 @@ final readonly class Current implements WeatherObjectInterface, WeatherCommonInt
     /**
      * @return null|float
      */
-    public function getVisibilityInKm(): ?int
+    public function getVisibilityInKm(): ?float
     {
         return $this->current->vis_km ?? null;
     }
@@ -253,7 +253,7 @@ final readonly class Current implements WeatherObjectInterface, WeatherCommonInt
     /**
      * @return null|float
      */
-    public function getVisibilityInMiles(): ?int
+    public function getVisibilityInMiles(): ?float
     {
         return $this->current->vis_miles ?? null;
     }
