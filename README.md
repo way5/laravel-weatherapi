@@ -92,6 +92,64 @@ search()    // WeatherAPI.com Search or Autocomplete API returns matching cities
 
 By default, the *current* method is used. Please note that the default WeatherAPI Free plan key is limited for the *history* method.
 
+#### Weather [Condition Codes](https://www.weatherapi.com/docs/conditions.json)
+
+<details>
+  <summary>Condition codes list:</summary>
+
+| Code | Description |
+|:---:|:---|
+| 1000 | Sunny |
+| 1003 | Partly Cloudy |
+| 1006 | Cloudy |
+| 1009 | Overcast |
+| 1030 | Mist |
+| 1063 | Patchy rain nearby |
+| 1066 | Patchy snow nearby |
+| 1069 | Patchy sleet nearby |
+| 1072 | Patchy freezing drizzle nearby |
+| 1087 | Thundery outbreaks in nearby |
+| 1114 | Blowing snow |
+| 1117 | Blizzard |
+| 1135 | Fog |
+| 1147 | Freezing fog |
+| 1150 | Patchy light drizzle |
+| 1153 | Light drizzle |
+| 1168 | Freezing drizzle |
+| 1171 | Heavy freezing drizzle |
+| 1180 | Patchy light rain |
+| 1183 | Light rain |
+| 1186 | Moderate rain at times |
+| 1189 | Moderate rain |
+| 1192 | Heavy rain at times |
+| 1195 | Heavy rain |
+| 1198 | Light freezing rain |
+| 1201 | Moderate or heavy freezing rain |
+| 1204 | Light sleet |
+| 1207 | Moderate or heavy sleet |
+| 1210 | Patchy light snow |
+| 1213 | Light snow |
+| 1216 | Patchy moderate snow |
+| 1219 | Moderate snow |
+| 1222 | Patchy heavy snow |
+| 1225 | Heavy snow |
+| 1237 | Ice pellets |
+| 1240 | Light rain shower |
+| 1243 | Moderate or heavy rain shower |
+| 1246 | Torrential rain shower |
+| 1249 | Light sleet showers |
+| 1252 | Moderate or heavy sleet showers |
+| 1255 | Light snow showers |
+| 1258 | Moderate or heavy snow showers |
+| 1261 | Light showers of ice pellets |
+| 1264 | Moderate or heavy showers of ice pellets |
+| 1273 | Patchy light rain in area with thunder |
+| 1276 | Moderate or heavy rain in area with thunder |
+| 1279 | Patchy light snow in area with thunder |
+| 1282 | Moderate or heavy snow in area with thunder |
+
+</details>
+
 ### Sports API
 
 ```php
@@ -114,7 +172,7 @@ For further details, you can also check the weather [controller](https://github.
 ![Screenshot 2023-06-18 at 11 27 33](https://github.com/GrigoryGerasimov/laravel-weather/assets/102112036/20dc6213-6a98-4def-bfaf-ea1b039b8968)
 
 ## Documentation
-For the detailed infos on the package structure and api, please refer to the [Laravel-Weather documentation](https://github.com/GrigoryGerasimov/laravel-weather/tree/main/docs) which is published into your public folder. While running the php artisan serve command, you can access the docs as follows:
+For the detailed infos on the package structure and api, please refer to the [Laravel-Weather documentation](https://github.com/GrigoryGerasimov/laravel-weather/tree/main/docs) which is published into your public folder. While running the `php artisan serve` command, you can access the docs as follows:
 
 `http://localhost:8000/vendor/laravel-weather/docs/index.html`
 
