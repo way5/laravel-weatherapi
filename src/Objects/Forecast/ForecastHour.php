@@ -310,6 +310,26 @@ final readonly class ForecastHour implements WeatherObjectInterface, WeatherComm
         return $this->forecastHour->uv ?? null;
     }
 
+
+    /**
+     * Shortwave solar radiation or Global horizontal irradiation (GHI) W/m²
+     * @return float|null
+     */
+    public function getSolarShortwaveRad(): ?float
+    {
+        return $this->forecastHour->short_rad ?? null;
+    }
+
+
+    /**
+     * Diffuse Horizontal Irradiation (DHI) W/m²
+     * @return float|null
+     */
+    public function getSolarDiffuseRad(): ?float
+    {
+        return $this->forecastHour->diff_rad ?? null;
+    }
+
     /**
      * @return AirQuality|null
      */
