@@ -105,6 +105,14 @@ final readonly class ForecastDay implements WeatherObjectInterface
     /**
      * @return float|null
      */
+    public function getTotalSnowThicknessInCm(): ?float
+    {
+        return $this->forecastDay->totalsnow_cm ?? null;
+    }
+
+    /**
+     * @return float|null
+     */
     public function getAvgVisibilityInKm(): ?float
     {
         return $this->forecastDay->avgvis_km ?? null;
